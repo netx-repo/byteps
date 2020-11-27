@@ -2,7 +2,7 @@
 
 Bytescheduler is a generic communication scheduler for distributed training framework such as TensorFlow, PyTorch, MXNet. It separates tensor partitioning and 
 communication scheduling from various training frameworks, gradient update architectures and network protocols, without modifying their implementations much. 
-We open source ByteScheduler's source code here and hope it can facilitate further research and development in distributed DNN training acceleration and related directions.
+We open source ByteScheduler's source code here and hope it can facilitate further research and development in distributed DNN training acceleration and related directions. The code is reorganized based on the original paper version for open source purpose, feel free to file an issue if you find a bug.
 
 **Table of Contents**
 
@@ -34,15 +34,15 @@ The difference with BytePS is: ByteScheduler works as a shim between tensor prog
 Though both provide tensor partitioning, credit-based preemptive scheduling and generality features, the design [rationale](https://github.com/bytedance/byteps/blob/master/docs/rationale.md)
  and [architecture](https://github.com/bytedance/byteps/blob/master/docs/architecture.md) of BytePS are different.
 
-ByteScheduler is fast. Below is a chart representing the benchmark that was done on GPU
-servers with 8 V100 GPUs each connected by RoCE-capable 100 Gbit/s network:
+ByteScheduler is fast. Below is a chart representing the MXNet PS benchmark that was done on GPU
+servers with 8 V100 PCIe GPUs each connected by RoCE-capable 100 Gbit/s network:
 
 | ResNet50  | VGG16 | Transformer |
 | ------------- | ------------- | -------------|
 | ![ByteScheduler ResNet50 Speedup](docs/mxnet_ps_rdma_resnet50_sync.png)  | ![ByteScheduler ResNet50 Speedup](./docs/mxnet_ps_rdma_vgg16_sync.png)  | ![ByteScheduler ResNet50 Speedup](./docs/mxnet_ps_rdma_transformer_sync.png) |
 
 
-ByteScheduler achieves up to 171% speedup.
+ByteScheduler achieves up to 171% speedup in this case.
 
 ## Install
 
