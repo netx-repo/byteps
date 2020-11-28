@@ -1,4 +1,4 @@
 [submodule "3rdparty/ps-lite"]
 	path = 3rdparty/ps-lite
-	url = https://github.com/bytedance/ps-lite
+	url = https://github.com/Rivendile/ps-lite.git
 	branch = byteps
