@@ -1,0 +1,53 @@
+FROM horovod/horovod:0.16.4-tf1.14.0-torch1.1.0-mxnet1.4.1-py2.7
+
+# setup cluster user and SSH access to container
+ENV USER cluster
+RUN useradd -ms /bin/bash $USER && usermod -p '*' $USER
+ENV HOME /home/$USER
+ENV SSHDIR $HOME/.ssh
+RUN mkdir -p ${SSHDIR} \
+    && touch ${SSHDIR}/sshd_config \
+    && ssh-keygen -t rsa -f ${SSHDIR}/ssh_host_rsa_key -N '' \
+    && cp ${SSHDIR}/ssh_host_rsa_key.pub ${SSHDIR}/authorized_keys \
+    && cp ${SSHDIR}/ssh_host_rsa_key ${SSHDIR}/id_rsa \
+    && echo "    IdentityFile ${SSHDIR}/id_rsa" >> ${SSHDIR}/config \
+    && echo "    StrictHostKeyChecking no" >> ${SSHDIR}/config \
+    && echo "    UserKnownHostsFile /dev/null" >> ${SSHDIR}/config \
+    && echo "    Port 2022" >> ${SSHDIR}/config \
+    && echo 'Port 2022' >> ${SSHDIR}/sshd_config \
+    && echo "HostKey ${SSHDIR}/ssh_host_rsa_key" >> ${SSHDIR}/sshd_config \
+    && echo "PidFile ${SSHDIR}/sshd.pid" >> ${SSHDIR}/sshd_config \
+    && echo "PasswordAuthentication no" >> ${SSHDIR}/sshd_config \
+    && chmod -R 600 ${SSHDIR}/* \
+    && chown -R ${USER}:${USER} ${SSHDIR}/
+
+ENV USE_BYTESCHEDULER=1
+ENV BYTESCHEDULER_WITH_PYTORCH=1
+ENV BYTESCHEDULER_WITHOUT_MXNET=1
+
+ARG HOROVOD_VERSION=2aac48c95c035bee7d68f9aff30e59319f46c21e
+
+WORKDIR /home/$USER/
+
+# Apply the patch and reinstall Horovod
+RUN git clone --branch bytescheduler --recursive https://github.com/Rivendile/byteps.git
+RUN git clone --recursive https://github.com/horovod/horovod.git && \
+    cd horovod && git reset --hard ${HOROVOD_VERSION}
+RUN cp byteps/bytescheduler/bytescheduler/pytorch/horovod_pytorch_t4.patch horovod/ && \
+    cd horovod && git apply horovod_pytorch_t4.patch && python setup.py install
+
+# Install ByteScheduler
+RUN pip install bayesian-optimization==1.0.1 && cd byteps/bytescheduler && python setup.py install
+
+# Examples
+WORKDIR /home/$USER/byteps/bytescheduler/examples/pytorch/
+
+# Set default shell to /bin/bash
+SHELL ["/bin/bash", "-cu"]
+
+EXPOSE 2022
+
+COPY container_entrypoint.sh /etc/
+
+RUN chmod +x /etc/container_entrypoint.sh
+ENTRYPOINT /etc/container_entrypoint.sh

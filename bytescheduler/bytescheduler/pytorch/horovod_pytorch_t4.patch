@@ -1,0 +1,59 @@
+From 851dfc0a1a17aff3860404555944793bd77d57fa Mon Sep 17 00:00:00 2001
+From: Ubuntu <ubuntu@ip-172-31-63-43.ec2.internal>
+Date: Sun, 29 Nov 2020 13:14:13 +0000
+Subject: [PATCH] get patch
+
+---
+ horovod/common/global_state.h |  4 +++-
+ horovod/common/operations.cc  | 13 ++++++++++++-
+ 2 files changed, 15 insertions(+), 2 deletions(-)
+
+diff --git a/horovod/common/global_state.h b/horovod/common/global_state.h
+index 1de2505..8b21c94 100644
+--- a/horovod/common/global_state.h
++++ b/horovod/common/global_state.h
+@@ -83,7 +83,9 @@ struct HorovodGlobalState {
+ 
+   // Flag indicating whether to mark cycles in the timeline.
+   bool mark_cycles_in_timeline = false;
+-
++  // Flag indicating whether to use ByteScheduler.
++  bool use_bytescheduler = false;
++    
+   ParameterManager param_manager;
+ 
+   // Encapsulates the fusion buffers, handles resizing and auto-tuning of buffer size.
+diff --git a/horovod/common/operations.cc b/horovod/common/operations.cc
+index 43cf871..18f40b9 100644
+--- a/horovod/common/operations.cc
++++ b/horovod/common/operations.cc
+@@ -666,7 +666,12 @@ void PerformOperation(TensorTable& tensor_table, Response response) {
+   }
+   while (!waiting_tensors.empty()) {
+     for (auto it = waiting_tensors.begin(); it != waiting_tensors.end();) {
+-      if (it->ready_event->Ready()) {
++      auto ready = true;
++      // If bytescheduler is enabled, ready is also true for rank 0.
++      if (horovod_global.rank != 0 || !horovod_global.use_bytescheduler) {
++        ready = it->ready_event->Ready();
++      }
++      if (ready) {
+         timeline.ActivityEnd(it->tensor_name);
+         timeline.ActivityStart(it->tensor_name, WAIT_FOR_OTHER_TENSOR_DATA);
+         it = waiting_tensors.erase(it);
+@@ -1025,6 +1030,12 @@ void BackgroundThreadLoop(HorovodGlobalState& state, MPIContext& ctx) {
+   set_int_from_env(HOROVOD_STALL_CHECK_TIME_SECONDS, state.stall_warning_time_seconds);
+ 
+   set_int_from_env(HOROVOD_STALL_SHUTDOWN_TIME_SECONDS, state.stall_shutdown_time_seconds);
++  // Override use_bytescheduler flag
++  auto use_bytescheduler = std::getenv("USE_BYTESCHEDULER");
++  if (use_bytescheduler != nullptr &&
++      std::strtol(use_bytescheduler, nullptr, 10) > 0) {
++    state.use_bytescheduler = true;
++  }
+ 
+   // Override Tensor Fusion threshold, if it's set.
+   state.param_manager.SetTensorFusionThresholdBytes(64 * 1024 * 1024);
+-- 
+2.17.1
+
