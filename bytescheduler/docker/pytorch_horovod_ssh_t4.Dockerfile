@@ -1,3 +1,4 @@
+# changed new base docker, but still use horovod v0.16.1
 FROM horovod/horovod:0.16.4-tf1.14.0-torch1.1.0-mxnet1.4.1-py2.7
 
 # setup cluster user and SSH access to container
@@ -25,7 +26,8 @@ ENV USE_BYTESCHEDULER=1
 ENV BYTESCHEDULER_WITH_PYTORCH=1
 ENV BYTESCHEDULER_WITHOUT_MXNET=1
 
-ARG HOROVOD_VERSION=2aac48c95c035bee7d68f9aff30e59319f46c21e
+# ARG HOROVOD_VERSION=049f10812fa06a22203ed8db406a99624d07b8dc # v0.16.4
+ARG HOROVOD_VERSION=b5cbf240909b467c348683c69df4d73f07147860 # v0.16.1
 
 WORKDIR /home/$USER/
 
@@ -33,8 +35,8 @@ WORKDIR /home/$USER/
 RUN git clone --branch bytescheduler --recursive https://github.com/Rivendile/byteps.git
 RUN git clone --recursive https://github.com/horovod/horovod.git && \
     cd horovod && git reset --hard ${HOROVOD_VERSION}
-RUN cp byteps/bytescheduler/bytescheduler/pytorch/horovod_pytorch_t4.patch horovod/ && \
-    cd horovod && git apply horovod_pytorch_t4.patch && python setup.py install
+RUN cp byteps/bytescheduler/bytescheduler/pytorch/horovod_pytorch.patch horovod/ && \
+    cd horovod && git apply horovod_pytorch.patch && python setup.py install
 
 # Install ByteScheduler
 RUN pip install bayesian-optimization==1.0.1 && cd byteps/bytescheduler && python setup.py install

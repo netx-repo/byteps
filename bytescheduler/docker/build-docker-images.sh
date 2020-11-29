@@ -15,4 +15,6 @@ docker build -t bsc-mxnet-ps-ssh-t4:$(date +%Y%m%d-%H%M%S) --no-cache -f mxnet_p
 
 #docker build -t bsc-pytorch-horovod-ssh:$(date +%Y%m%d-%H%M%S) --no-cache -f pytorch_horovod_ssh.Dockerfile .
 
+#docker build -t bsc-pytorch-horovod-ssh-t4:$(date +%Y%m%d-%H%M%S) --no-cache -f pytorch_horovod_ssh_t4.Dockerfile .
+
 #docker build -t test --no-cache -f dockerfile .
