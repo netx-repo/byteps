@@ -13,7 +13,7 @@ export BYTESCHEDULER_QUEUE_TYPE=0
 #export BYTESCHEDULER_CREDIT=160000000
 #export BYTESCHEDULER_CREDIT_TUNING=0
 #export BYTESCHEDULER_PARTITION_TUNING=0
-#export BYTESCHEDULER_TIMELINE=timeline_resnet50_ori_part8M_4.json
+export BYTESCHEDULER_TIMELINE=timeline_resnet50_baseline_1-4.json
 # export BYTESCHEDULER_DEBUG=1
 export PS_VERBOSE=1
 
@@ -26,7 +26,7 @@ shift
 arg="$@"
 
 # start the scheduler
-export DMLC_PS_ROOT_URI='172.31.50.66'
+export DMLC_PS_ROOT_URI='172.31.61.114'
 export DMLC_PS_ROOT_PORT=8000
 
 # start workers
