@@ -9,4 +9,4 @@ export BYTESCHEDULER_PARTITION_TUNING=0
 # export BYTESCHEDULER_DEBUG=1
 export PS_VERBOSE=1
 
-horovodrun -np 1 -H localhost:1 python pytorch_horovod_benchmark.py
+horovodrun -np 1 -H localhost:1 python pytorch_horovod_benchmark.py --model resnet50 --num-batches-per-iter 500 --num-iters 1
