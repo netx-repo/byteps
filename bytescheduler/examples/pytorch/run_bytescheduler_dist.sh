@@ -8,5 +8,7 @@ export BYTESCHEDULER_PARTITION_TUNING=1
  export BYTESCHEDULER_TIMELINE=timeline_bs.json
 # export BYTESCHEDULER_DEBUG=1
 export PS_VERBOSE=1
+export BYTESCHEDULER_ROOT_IP=localhost
+export BYTESCHEDULER_ROOT_PORT=8000
 
-horovodrun -np 16 -H localhost:4,3.93.217.10:4,3.85.110.77:4,3.95.157.172:4 -p 2022 python pytorch_horovod_benchmark.py --model resnet50 --num-batches-per-iter 100 --num-iters 5
+horovodrun -np 16 -H localhost:4,3.93.217.10:4,3.85.110.77:4,3.95.157.172:4 -p 2022 python pytorch_horovod_benchmark.py --model vgg16 --num-batches-per-iter 100 --num-iters 5
