@@ -11,4 +11,4 @@ export PS_VERBOSE=1
 export BYTESCHEDULER_ROOT_IP=localhost
 export BYTESCHEDULER_ROOT_PORT=8000
 
-horovodrun -np 8 -H localhost:4,3.93.217.10:4 -p 2022 python pytorch_horovod_benchmark.py --model vgg16 --num-batches-per-iter 100 --num-iters 5
+horovodrun -np 8 -H localhost:4,3.93.217.10:4 -p 2022 python pytorch_horovod_benchmark.py --model resnet50 --num-batches-per-iter 100 --num-iters 5
