@@ -12,6 +12,7 @@ WORKDIR /home/cluster
 # Install dev tools
 RUN apt-get update && apt-get install -y git python-dev build-essential
 RUN apt-get install -y wget && wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py
+RUN DEBIAN_FRONTEND=noninteractive apt install -y tzdata
 
 # install general dependencies
 RUN apt-get install -y openssh-server openssh-client vim
