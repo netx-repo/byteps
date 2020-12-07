@@ -73,7 +73,7 @@ RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 200 && \
 # RUN pip install mxnet-cu100==1.5.0
 
 # Clone and install MXNet as ByteScheduler compilation needs header files
-RUN git clone --recursive --branch byteps https://github.com/Rivendile/incubator-mxnet.git
+RUN git clone --recursive --branch bytescheduler https://github.com/Rivendile/incubator-mxnet.git
 RUN cd incubator-mxnet/docs/install && ./install_mxnet_ubuntu_python.sh
 RUN cd incubator-mxnet/python && pip install -e .
 
@@ -85,7 +85,7 @@ RUN git clone --branch bytescheduler --recursive https://github.com/Rivendile/by
     cd byteps/bytescheduler && python setup.py install
 RUN rm -f /usr/local/cuda/lib64/libcuda.so.1
 
-RUN pip install numpy --src /usr/local/lib/python2.7/dist-packages/
+RUN pip install numpy -t /usr/local/lib/python2.7/dist-packages/
 
 # Examples
 WORKDIR /home/$USER/byteps/bytescheduler/examples/mxnet-image-classification
