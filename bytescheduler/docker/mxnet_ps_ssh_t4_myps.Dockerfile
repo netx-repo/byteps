@@ -85,7 +85,7 @@ RUN git clone --branch bytescheduler --recursive https://github.com/Rivendile/by
     cd byteps/bytescheduler && python setup.py install
 RUN rm -f /usr/local/cuda/lib64/libcuda.so.1
 
-RUN pip install numpy -t /usr/local/lib/python2.7/dist-packages/
+RUN pip install numpy six scipy -t /usr/local/lib/python2.7/dist-packages/
 
 # Examples
 WORKDIR /home/$USER/byteps/bytescheduler/examples/mxnet-image-classification
