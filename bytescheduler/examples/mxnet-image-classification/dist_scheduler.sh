@@ -26,7 +26,7 @@ shift
 arg="$@"
 
 # start the scheduler
-export DMLC_PS_ROOT_URI='172.31.53.48'
+export DMLC_PS_ROOT_URI='172.31.58.199'
 export DMLC_PS_ROOT_PORT=8000
 export DMLC_ROLE='scheduler'
 #nvprof -o bs_scheduler_profile.nvvp ${bin} ${arg} &
