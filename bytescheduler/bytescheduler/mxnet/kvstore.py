@@ -78,6 +78,7 @@ class ScheduledKVStore(mx.kvstore.KVStore):
         length equal to # of executors/devices
         """
         self._push_buffer[key] = (key, value, priority)
+        self._logger.info("push of key: {}; value: {}; priority: {}".format(key, value, priority))
 
     def pull(self, key, out=None, priority=0, ignore_sparse=True):
         """Post each push/pull operation as a ByteTask to Core.
@@ -88,6 +89,7 @@ class ScheduledKVStore(mx.kvstore.KVStore):
         # Must be first pull for parameter initialization
         if key not in self._push_buffer:
             self._logger.debug("first pull of {}".format(key))
+            self._logger.info("first pull of {}; {}; {}.".format(key, value, priority))
             task = KVStoreTask(
                 key,
                 out,
@@ -107,6 +109,8 @@ class ScheduledKVStore(mx.kvstore.KVStore):
 
             # Merge push and pull into one task
             (_key, _value, _priority) = self._push_buffer[key]
+            self._logger.info("pull of {}; {}; {}.".format(key, value, priority))
+            self._logger.info("pull of ____ {}; {}; {}.".format(_key, _value, _priority))
             task = KVStoreTask(
                 key,
                 (_value, out),
