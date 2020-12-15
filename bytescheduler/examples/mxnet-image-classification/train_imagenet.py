@@ -57,6 +57,7 @@ if __name__ == '__main__':
 
     use_bytescheduler = int(os.environ.get('USE_BYTESCHEDULER', '0'))
     bytescheduler_queue_type = int(os.environ.get('BYTESCHEDULER_QUEUE_TYPE', '0'))
+    slicer_kind = int(os.environ.get('PS_SLICER', '0'))
     if use_bytescheduler == 0:
         profiler_pre = 'mxnet_'
     else:
@@ -66,7 +67,12 @@ if __name__ == '__main__':
             profiler_pre = 'bs_rev_'
         else:
             profiler_pre = 'bs_fifo_'
-            
+    
+    if slicer_kind == 0 :
+        profiler_pre += 'RangeSlicer_'
+    else:
+        profiler_pre += 'ModSlicer_'
+    
     # mxnet profiler
     mx.profiler.set_config(profile_all=True, filename=profiler_pre+args.network+str(args.num_layers)+'_'+args.role+'.json', continuous_dump=True, profile_process=args.role)
     mx.profiler.set_state('run')
