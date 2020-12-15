@@ -5,8 +5,6 @@ if [ $# -lt 3 ]; then
     exit -1;
 fi
 
-export USE_BYTESCHEDULER=0
-export BYTESCHEDULER_QUEUE_TYPE=0
 # export BYTESCHEDULER_TUNING=1
 export BYTESCHEDULER_PARTITION=8000000
 export BYTESCHEDULER_CREDIT=8000000
@@ -19,6 +17,12 @@ export PS_VERBOSE=1
 export DMLC_NUM_SERVER=$1
 shift
 export DMLC_NUM_WORKER=$1
+shift
+export PS_SLICER=$1
+shift
+export USE_BYTESCHEDULER=$1
+shift
+export BYTESCHEDULER_QUEUE_TYPE=$1
 shift
 bin=$1
 shift
