@@ -30,7 +30,7 @@ shift
 arg="$@"
 
 # start the scheduler
-export DMLC_PS_ROOT_URI='172.31.15.187'
+export DMLC_PS_ROOT_URI='172.31.72.73'
 export DMLC_PS_ROOT_PORT=8000
 
 # start workers
