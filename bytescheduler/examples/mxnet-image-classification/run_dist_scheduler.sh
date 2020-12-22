@@ -1,1 +1,1 @@
-./dist_scheduler.sh  4 4 0 0 0  python train_imagenet.py --network resnet --num-layers 50 --benchmark 1 --kv-store dist_sync --batch-size 32 --disp-batches 1 --num-examples 96 --num-epochs 1 --gpus 0 --role scheduler
+./dist_scheduler.sh  4 4 0 0 0  python train_imagenet.py --network resnet --num-layers 50 --benchmark 1 --kv-store dist_sync --batch-size 32 --disp-batches 1 --num-examples 256 --num-epochs 1 --gpus 0 --role scheduler
