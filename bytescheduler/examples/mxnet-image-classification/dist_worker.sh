@@ -25,6 +25,10 @@ export USE_BYTESCHEDULER=$1
 shift
 export BYTESCHEDULER_QUEUE_TYPE=$1
 shift
+export KVSTORE_MAP_KIND=$1
+shift
+export KVSTORE_MAP_MODEL=$1
+shift
 bin=$1
 shift
 arg="$@"
