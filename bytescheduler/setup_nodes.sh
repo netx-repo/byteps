@@ -21,6 +21,3 @@ nvidia-docker run -it --gpus all --ipc=host --name mlnet-analysis --network host
 docker_container_id=$(docker ps -aqf "name=mlnet-analysis")
 docker cp $docker_container_id:/home/cluster/.ssh ~/mxnet_ps_ssh
 ssh -i ~/mxnet_ps_ssh/id_rsa -p 2022 cluster@localhost
-cd ~/byteps/bytescheduler/examples/mxnet-image-classification
-git config user.email "908636821@qq.com"
-git config user.name "rivendile"
