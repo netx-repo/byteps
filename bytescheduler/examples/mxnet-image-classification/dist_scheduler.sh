@@ -14,12 +14,11 @@ fi
 #export BYTESCHEDULER_TIMELINE=timeline_vgg16_baseline_1-4.json
 # export BYTESCHEDULER_DEBUG=1
 #export PS_VERBOSE=1
+export PS_SLICER=0
 
 export DMLC_NUM_SERVER=$1
 shift
 export DMLC_NUM_WORKER=$1
-shift
-export PS_SLICER=$1
 shift
 export USE_BYTESCHEDULER=$1
 shift
