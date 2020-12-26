@@ -29,6 +29,8 @@ export KVSTORE_MAP_KIND=$1
 shift
 export KVSTORE_MAP_MODEL=$1
 shift
+export BYTESCHEDULER_PARTITION=$1
+shift
 bin=$1
 shift
 arg="$@"

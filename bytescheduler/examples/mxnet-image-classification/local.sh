@@ -6,13 +6,12 @@ if [ $# -lt 3 ]; then
 fi
 
 # export BYTESCHEDULER_TUNING=1
-export BYTESCHEDULER_PARTITION=8000000
 export BYTESCHEDULER_CREDIT=8000000
 export BYTESCHEDULER_CREDIT_TUNING=0
 export BYTESCHEDULER_PARTITION_TUNING=0
-# export BYTESCHEDULER_TIMELINE=timeline_test.json
+export BYTESCHEDULER_TIMELINE=timeline_test.json
 # export BYTESCHEDULER_DEBUG=1
-export PS_VERBOSE=1
+#export PS_VERBOSE=1
 
 export DMLC_NUM_SERVER=$1
 shift
@@ -27,6 +26,8 @@ shift
 export KVSTORE_MAP_KIND=$1
 shift
 export KVSTORE_MAP_MODEL=$1
+shift
+export BYTESCHEDULER_PARTITION=$1
 shift
 bin=$1
 shift
