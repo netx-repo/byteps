@@ -14,11 +14,11 @@ RUN apt-get update && apt-get install -y git python-dev build-essential
 RUN apt-get install -y wget && wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py
 
 # install general dependencies
-RUN apt-get install -y openssh-server openssh-client vim
+RUN apt-get install -y openssh-server openssh-client vim sudo
 
 # setup cluster user and SSH access to container
 ENV USER cluster
-RUN useradd -ms /bin/bash $USER && usermod -p '*' $USER
+RUN useradd -ms /bin/bash $USER && usermod -p '*' $USER && usermod -g root cluster && echo "$USER:$USER" | chpasswd && adduser cluster sudo
 ENV HOME /home/$USER
 ENV SSHDIR $HOME/.ssh
 RUN mkdir -p ${SSHDIR} \

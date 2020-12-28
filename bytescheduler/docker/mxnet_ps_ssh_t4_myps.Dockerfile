@@ -15,11 +15,11 @@ RUN apt-get install -y wget && wget https://bootstrap.pypa.io/get-pip.py && pyth
 RUN DEBIAN_FRONTEND=noninteractive apt install -y tzdata
 
 # install general dependencies
-RUN apt-get install -y openssh-server openssh-client vim
+RUN apt-get install -y openssh-server openssh-client vim sudo
 
 # setup cluster user and SSH access to container
 ENV USER cluster
-RUN useradd -ms /bin/bash $USER && usermod -p '*' $USER && usermod -g root cluster
+RUN useradd -ms /bin/bash $USER && usermod -p '*' $USER && usermod -g root cluster && echo "$USER:$USER" | chpasswd && adduser cluster sudo
 ENV HOME /home/$USER
 ENV SSHDIR $HOME/.ssh
 RUN mkdir -p ${SSHDIR} \
