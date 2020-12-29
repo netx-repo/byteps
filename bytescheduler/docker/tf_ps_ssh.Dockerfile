@@ -1,4 +1,5 @@
-FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu16.04
+ARG UBUNTU_VERSION=16.04
+FROM nvidia/cuda:10.0-base-ubuntu${UBUNTU_VERSION} as base
 
 ENV USE_BYTESCHEDULER=1
 ENV BYTESCHEDULER_WITHOUT_MXNET=1
@@ -10,7 +11,7 @@ WORKDIR /home/cluster
 # Install dev tools
 RUN apt-get update && apt-get install -y git python-dev build-essential
 RUN apt-get install -y wget && wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py
-RUN DEBIAN_FRONTEND=noninteractive apt install -y tzdata
+#RUN DEBIAN_FRONTEND=noninteractive apt install -y tzdata
 
 # install general dependencies
 RUN apt-get install -y openssh-server openssh-client vim sudo
@@ -71,13 +72,27 @@ RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 200 && \
 # Install tensorflow
 #RUN pip install tensorflow-gpu==1.13.2
 
+# Prepare for installing TF
+#RUN pip install -U pip six numpy wheel setuptools mock 'future>=0.17.1'
+#RUN pip install -U keras_applications==1.0.6 --no-deps
+#RUN pip install -U keras_preprocessing==1.0.5 --no-deps
+#RUN apt install unzip zip
+#RUN apt-get install openjdk-8-jdk
+#RUN wget https://github.com/bazelbuild/bazel/releases/download/0.19.2/bazel-0.19.2-installer-linux-x86_64.sh
+#RUN chmod +x bazel-0.19.2-installer-linux-x86_64.sh
+#RUN ./bazel-0.19.2-installer-linux-x86_64.sh
+
+# Insatll TF
+#RUN git clone https://github.com/rivendile/tensorflow.git && cd tensorflow && git checkout r1.13 && ./configure
+#RUN cd tensorflow && bazel build --config=opt --config=cuda //tensorflow/tools/pip_package:build_pip_package --local_resources 2048,.5,1.0
+
 # Install ByteScheduler for tensorflow
-RUN pip install bayesian-optimization==1.0.1 six
-RUN cd /usr/local/cuda/lib64 && ln -s stubs/libcuda.so libcuda.so.1
-RUN git clone --branch bytescheduler --recursive https://github.com/Rivendile/byteps.git
+#RUN pip install bayesian-optimization==1.0.1 six
+#RUN cd /usr/local/cuda/lib64 && ln -s stubs/libcuda.so libcuda.so.1
+#RUN git clone --branch bytescheduler --recursive https://github.com/Rivendile/byteps.git
 #RUN cd byteps/bytescheduler && python setup.py install
-RUN rm -f /usr/local/cuda/lib64/libcuda.so.1
-RUN pip install numpy six scipy -t /usr/local/lib/python2.7/dist-packages/
+#RUN rm -f /usr/local/cuda/lib64/libcuda.so.1
+#RUN pip install numpy six scipy -t /usr/local/lib/python2.7/dist-packages/
 #RUN cd /usr/local/cuda/lib64
 #RUN git clone --branch bytescheduler --recursive https://github.com/Rivendile/byteps.git
 #RUN cd /usr/local/cuda/lib64/byteps/bytescheduler/bytescheduler/tensorflow
