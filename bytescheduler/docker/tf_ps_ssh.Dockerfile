@@ -1,5 +1,4 @@
-ARG UBUNTU_VERSION=16.04
-FROM nvidia/cuda:10.0-base-ubuntu${UBUNTU_VERSION} as base
+FROM nvidia/cuda:10.0-cudnn7-devel
 
 ENV USE_BYTESCHEDULER=1
 ENV BYTESCHEDULER_WITHOUT_MXNET=1
@@ -37,37 +36,12 @@ RUN mkdir -p ${SSHDIR} \
     && chmod -R 600 ${SSHDIR}/* \
     && chown -R ${USER}:${USER} ${SSHDIR}/
 
-# Install gcc 4.9
-RUN mkdir -p /home/$USER/gcc/ && cd /home/$USER/gcc &&\
-    wget http://launchpadlibrarian.net/247707088/libmpfr4_3.1.4-1_amd64.deb &&\
-    wget http://launchpadlibrarian.net/253728424/libasan1_4.9.3-13ubuntu2_amd64.deb &&\
-    wget http://launchpadlibrarian.net/253728426/libgcc-4.9-dev_4.9.3-13ubuntu2_amd64.deb &&\
-    wget http://launchpadlibrarian.net/253728314/gcc-4.9-base_4.9.3-13ubuntu2_amd64.deb &&\
-    wget http://launchpadlibrarian.net/253728399/cpp-4.9_4.9.3-13ubuntu2_amd64.deb &&\
-    wget http://launchpadlibrarian.net/253728404/gcc-4.9_4.9.3-13ubuntu2_amd64.deb &&\
-    wget http://launchpadlibrarian.net/253728432/libstdc++-4.9-dev_4.9.3-13ubuntu2_amd64.deb &&\
-    wget http://launchpadlibrarian.net/253728401/g++-4.9_4.9.3-13ubuntu2_amd64.deb
-
-RUN cd /home/$USER/gcc &&\
-    dpkg -i gcc-4.9-base_4.9.3-13ubuntu2_amd64.deb &&\
-    dpkg -i libmpfr4_3.1.4-1_amd64.deb &&\
-    dpkg -i libasan1_4.9.3-13ubuntu2_amd64.deb &&\
-    dpkg -i libgcc-4.9-dev_4.9.3-13ubuntu2_amd64.deb &&\
-    dpkg -i cpp-4.9_4.9.3-13ubuntu2_amd64.deb &&\
-    dpkg -i gcc-4.9_4.9.3-13ubuntu2_amd64.deb &&\
-    dpkg -i libstdc++-4.9-dev_4.9.3-13ubuntu2_amd64.deb &&\
-    dpkg -i g++-4.9_4.9.3-13ubuntu2_amd64.deb
-
-# Pin GCC to 4.9 (priority 200) to compile correctly against MXNet.
-RUN update-alternatives --install /usr/bin/gcc gcc $(readlink -f $(which gcc)) 100 && \
-    update-alternatives --install /usr/bin/x86_64-linux-gnu-gcc x86_64-linux-gnu-gcc $(readlink -f $(which gcc)) 100 && \
-    update-alternatives --install /usr/bin/g++ g++ $(readlink -f $(which g++)) 100 && \
-    update-alternatives --install /usr/bin/x86_64-linux-gnu-g++ x86_64-linux-gnu-g++ $(readlink -f $(which g++)) 100
-
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 200 && \
-    update-alternatives --install /usr/bin/x86_64-linux-gnu-gcc x86_64-linux-gnu-gcc /usr/bin/gcc-4.9 200 && \
-    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 200 && \
-    update-alternatives --install /usr/bin/x86_64-linux-gnu-g++ x86_64-linux-gnu-g++ /usr/bin/g++-4.9 200
+# Install GCC 4.8
+#RUN apt-get install gcc-4.8 g++-4.8
+#RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 100
+#RUN update-alternatives --config gcc
+#RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100
+#RUN update-alternatives --config g++
 
 # Install tensorflow
 #RUN pip install tensorflow-gpu==1.13.2
