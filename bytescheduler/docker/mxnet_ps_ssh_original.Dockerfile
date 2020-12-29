@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.0-cudnn7-devel
+FROM nvidia/cuda:9.0-cudnn7-devel
 
 
 ENV USE_BYTESCHEDULER=1
@@ -14,11 +14,11 @@ RUN apt-get update && apt-get install -y git python-dev build-essential
 RUN apt-get install -y wget && wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py
 
 # install general dependencies
-RUN apt-get install -y openssh-server openssh-client vim
+RUN apt-get install -y openssh-server openssh-client vim sudo
 
 # setup cluster user and SSH access to container
 ENV USER cluster
-RUN useradd -ms /bin/bash $USER && usermod -p '*' $USER && usermod -g root cluster
+RUN useradd -ms /bin/bash $USER && usermod -p '*' $USER && usermod -g root cluster && echo "$USER:$USER" | chpasswd && adduser cluster sudo
 ENV HOME /home/$USER
 ENV SSHDIR $HOME/.ssh
 RUN mkdir -p ${SSHDIR} \
@@ -69,7 +69,7 @@ RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 200 && \
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 200 && \
     update-alternatives --install /usr/bin/x86_64-linux-gnu-g++ x86_64-linux-gnu-g++ /usr/bin/g++-4.9 200
 
-RUN pip install mxnet-cu100==1.5.0
+RUN pip install mxnet-cu90==1.5.0
 
 # Clone MXNet as ByteScheduler compilation needs header files
 RUN git clone --recursive --branch v1.5.x https://github.com/apache/incubator-mxnet.git
