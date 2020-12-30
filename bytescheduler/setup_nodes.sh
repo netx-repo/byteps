@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # setup SSH
+cd ~/.ssh
+touch config
 echo "Host *" >>~/.ssh/config
 echo "    ForwardAgent yes" >>~/.ssh/config
 echo "Host *" >>.ssh/config
@@ -13,6 +15,7 @@ id2translate=$(cat ~/.ssh/id_rsa.pub)
 ssh -i ~/byteps/bytescheduler/bytescheduler-20201004.pem ubuntu@172.31.90.178 "echo $id2translate >>~/.ssh/authorized_keys"
 ssh -i ~/byteps/bytescheduler/bytescheduler-20201004.pem ubuntu@172.31.85.207 "echo $id2translate >>~/.ssh/authorized_keys"
 
+cd ~/
 # setup docker and connect to container
 # mxnet ps t4 
 docker login -u rivendile -p zhyh19980824
