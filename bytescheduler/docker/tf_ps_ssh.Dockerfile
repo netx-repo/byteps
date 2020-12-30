@@ -59,7 +59,9 @@ RUN mkdir -p ${SSHDIR} \
 # Insatll TF
 #RUN git clone https://github.com/rivendile/tensorflow.git && cd tensorflow && git checkout r1.13
 #RUN cd tensorflow && ./configure
-#RUN cd tensorflow && bazel build --config=opt --config=cuda //tensorflow/tools/pip_package:build_pip_package --local_resources 2048,.5,1.0
+#RUN cd tensorflow && bazel build --config=opt --config=cuda //tensorflow/tools/pip_package:build_pip_package
+#RUN cd tensorflow && ./bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
+#RUN pip install /tmp/tensorflow_pkg/tensorflow-1.13.2-cp27-cp27mu-linux_x86_64.whl
 
 # Install ByteScheduler for tensorflow
 #RUN pip install bayesian-optimization==1.0.1 six
