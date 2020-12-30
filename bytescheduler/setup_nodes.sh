@@ -5,7 +5,7 @@ cd ~/.ssh
 touch config
 echo "Host *" >>~/.ssh/config
 echo "    ForwardAgent yes" >>~/.ssh/config
-echo "Host *" >>.ssh/config
+echo "Host *" >>~/.ssh/config
 echo "    StrictHostKeyChecking no" >>~/.ssh/config
 ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
