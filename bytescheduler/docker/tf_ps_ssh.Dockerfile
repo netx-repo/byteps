@@ -47,7 +47,7 @@ RUN mkdir -p ${SSHDIR} \
 #RUN pip install tensorflow-gpu==1.13.2
 
 # Prepare for installing TF
-#RUN pip install -U pip six numpy wheel setuptools mock 'future>=0.17.1'
+#RUN pip install -U pip six numpy wheel setuptools mock 'future>=0.17.1' enum34
 #RUN pip install -U keras_applications==1.0.6 --no-deps
 #RUN pip install -U keras_preprocessing==1.0.5 --no-deps
 #RUN apt install unzip zip
@@ -57,7 +57,8 @@ RUN mkdir -p ${SSHDIR} \
 #RUN ./bazel-0.19.2-installer-linux-x86_64.sh
 
 # Insatll TF
-#RUN git clone https://github.com/rivendile/tensorflow.git && cd tensorflow && git checkout r1.13 && ./configure
+#RUN git clone https://github.com/rivendile/tensorflow.git && cd tensorflow && git checkout r1.13
+#RUN cd tensorflow && ./configure
 #RUN cd tensorflow && bazel build --config=opt --config=cuda //tensorflow/tools/pip_package:build_pip_package --local_resources 2048,.5,1.0
 
 # Install ByteScheduler for tensorflow
