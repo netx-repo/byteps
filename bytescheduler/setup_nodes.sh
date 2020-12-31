@@ -20,7 +20,7 @@ cd ~/
 # mxnet ps ssh t4 myps
 docker login -u rivendile -p zhyh19980824
 docker pull rivendile/bsc-mxnet-ps-ssh
-nvidia-docker run -it --gpus all --ipc=host --name mlnet-analysis --network host -v /home/ubuntu/byteps:/home/cluster/byteps --detach bd1b3ec517f2
+nvidia-docker run -it --gpus all --ipc=host --name mlnet-analysis --network host -v /home/ubuntu/byteps:/home/cluster/byteps --detach 8565e522a91c
 docker_container_id=$(docker ps -aqf "name=mlnet-analysis")
 docker cp $docker_container_id:/home/cluster/.ssh ~/mlnet_analysis_ssh
 ssh -i ~/mlnet_analysis_ssh/id_rsa -p 2022 cluster@localhost
