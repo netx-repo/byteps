@@ -12,8 +12,8 @@ chmod 600 ~/.ssh/id_rsa
 chmod 600 ~/.ssh/config
 chmod 600 ~/byteps/bytescheduler/bytescheduler-20201004.pem
 id2translate=$(cat ~/.ssh/id_rsa.pub)
-ssh -i ~/byteps/bytescheduler/bytescheduler-20201004.pem ubuntu@100.24.16.221 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler/bytescheduler-20201004.pem ubuntu@52.55.227.57 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler/bytescheduler-20201004.pem ubuntu@172.31.93.239 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler/bytescheduler-20201004.pem ubuntu@172.31.89.232 "echo $id2translate >>~/.ssh/authorized_keys"
 
 cd ~/
 # setup docker and connect to container
