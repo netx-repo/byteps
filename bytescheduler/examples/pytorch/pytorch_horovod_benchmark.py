@@ -10,6 +10,7 @@ import horovod.torch as hvd
 import timeit
 import numpy as np
 import os
+from itertools import cycle
 
 # Benchmark settings
 parser = argparse.ArgumentParser(description='PyTorch Synthetic Benchmark',
@@ -109,11 +110,9 @@ train_sampler = torch.utils.data.distributed.DistributedSampler(
 train_loader = torch.utils.data.DataLoader(
     train_dataset, batch_size=args.batch_size,
     sampler=train_sampler, **kwargs)
-iter_train_loader = iter(train_loader)
+iter_train_loader = cycle(train_loader)
 
 def benchmark_step():
-    global data_index
-
     data, target = next(iter_train_loader)
     if args.cuda:
         data, target = data.cuda(), target.cuda()
@@ -148,7 +147,7 @@ with torch.autograd.profiler.profile(enable_profiling, True) as prof:
     for x in range(args.num_iters):
         time = timeit.timeit(benchmark_step, number=args.num_batches_per_iter)
         img_sec = args.batch_size * args.num_batches_per_iter / time
-        log('Iter #%d: %.1f img/sec per %s' % (x, img_sec, device))
+        log('Iter #%d: %.1f img/sec per %s %d' % (x, img_sec, device, hvd.rank()))
         img_secs.append(img_sec)
 if enable_profiling:
     prof.export_chrome_trace(os.path.join('pytorch-trace', args.model+'-'+str(hvd.rank()) +'.json'))
