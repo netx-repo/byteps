@@ -5,7 +5,7 @@ import torch.backends.cudnn as cudnn
 import torch.nn.functional as F
 import torch.optim as optim
 import torch.utils.data.distributed
-from torchvision import datasets, transforms, models
+from torchvision import models
 import horovod.torch as hvd
 import timeit
 import numpy as np
@@ -14,8 +14,6 @@ import os
 # Benchmark settings
 parser = argparse.ArgumentParser(description='PyTorch Synthetic Benchmark',
                                  formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-parser.add_argument('--train-dir', default=os.path.expanduser('~/imagenet/train'),
-                    help='path to training data')
 parser.add_argument('--fp16-allreduce', action='store_true', default=False,
                     help='use fp16 compression during allreduce')
 
@@ -83,40 +81,21 @@ if use_bytescheduler > 0:
 hvd.broadcast_parameters(model.state_dict(), root_rank=0)
 hvd.broadcast_optimizer_state(optimizer, root_rank=0)
 
-## Set up fake data
-#datasets = []
-#for _ in range(100):
-#    data = torch.rand(args.batch_size, 3, 224, 224)
-#    target = torch.LongTensor(args.batch_size).random_() % 1000
-#    if args.cuda:
-#        data, target = data.cuda(), target.cuda()
-#    datasets.append(data)
-#data_index = 0
-kwargs = {'num_workers': 8, 'pin_memory': True} if args.cuda else {}
-train_dataset = \
-    datasets.ImageFolder(args.train_dir,
-                         transform=transforms.Compose([
-                             transforms.RandomResizedCrop(224),
-                             transforms.RandomHorizontalFlip(),
-                             transforms.ToTensor(),
-                             transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                                  std=[0.229, 0.224, 0.225])
-                         ]))
-# Horovod: use DistributedSampler to partition data among workers. Manually specify
-# `num_replicas=hvd.size()` and `rank=hvd.rank()`.
-train_sampler = torch.utils.data.distributed.DistributedSampler(
-    train_dataset, num_replicas=hvd.size(), rank=hvd.rank())
-train_loader = torch.utils.data.DataLoader(
-    train_dataset, batch_size=args.batch_size,
-    sampler=train_sampler, **kwargs)
-iter_train_loader = iter(train_loader)
+# Set up fake data
+datasets = []
+for _ in range(100):
+    data = torch.rand(args.batch_size, 3, 224, 224)
+    target = torch.LongTensor(args.batch_size).random_() % 1000
+    if args.cuda:
+        data, target = data.cuda(), target.cuda()
+    datasets.append(data)
+data_index = 0
 
 def benchmark_step():
     global data_index
 
-    data, target = next(iter_train_loader)
-    if args.cuda:
-        data, target = data.cuda(), target.cuda()
+    data = datasets[data_index%len(datasets)]
+    data_index += 1
     optimizer.zero_grad()
     output = model(data)
     loss = F.cross_entropy(output, target)

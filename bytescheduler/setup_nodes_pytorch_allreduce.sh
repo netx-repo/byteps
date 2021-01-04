@@ -12,7 +12,7 @@ chmod 600 ~/.ssh/id_rsa
 chmod 600 ~/.ssh/config
 chmod 600 ~/byteps/bytescheduler/bytescheduler-20201004.pem
 id2translate=$(cat ~/.ssh/id_rsa.pub)
-ssh -i ~/byteps/bytescheduler/bytescheduler-20201004.pem ubuntu@172.31.92.6 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler/bytescheduler-20201004.pem ubuntu@172.31.82.79 "echo $id2translate >>~/.ssh/authorized_keys"
 #ssh -i ~/byteps/bytescheduler/bytescheduler-20201004.pem ubuntu@172.31.90.76 "echo $id2translate >>~/.ssh/authorized_keys"
 
 cd ~/
@@ -20,7 +20,7 @@ cd ~/
 # mxnet ps ssh t4 myps
 docker login -u rivendile -p zhyh19980824
 docker pull rivendile/bsc-pytorch-horovod-ssh
-nvidia-docker run -it --gpus all --ipc=host --name mlnet-pytorch-allreduce --network host -v /home/ubuntu/byteps:/home/cluster/byteps --detach a7cabb978f86
+nvidia-docker run -it --gpus all --ipc=host --name mlnet-pytorch-allreduce --network host -v /home/ubuntu/byteps:/home/cluster/byteps --detach 91d17623757d
 docker_container_id=$(docker ps -aqf "name=mlnet-pytorch-allreduce")
 docker cp $docker_container_id:/home/cluster/.ssh ~/mlnet_pytorch_allreduce_ssh
 ssh -i ~/mlnet_pytorch_allreduce_ssh/id_rsa -p 2022 cluster@localhost
