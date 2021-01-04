@@ -37,43 +37,47 @@ RUN mkdir -p ${SSHDIR} \
     && chown -R ${USER}:${USER} ${SSHDIR}/
 
 # Install GCC 4.8
-#RUN apt-get install gcc-4.8 g++-4.8
-#RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 100
-#RUN update-alternatives --config gcc
-#RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100
-#RUN update-alternatives --config g++
+RUN apt-get install -y gcc-4.8 g++-4.8
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 100
+RUN update-alternatives --config gcc
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 100
+RUN update-alternatives --config g++
 
 # Install tensorflow
 #RUN pip install tensorflow-gpu==1.13.2
 
 # Prepare for installing TF
-#RUN pip install -U pip six numpy wheel setuptools mock 'future>=0.17.1' enum34
-#RUN pip install -U keras_applications==1.0.6 --no-deps
-#RUN pip install -U keras_preprocessing==1.0.5 --no-deps
-#RUN apt install unzip zip
-#RUN apt-get install openjdk-8-jdk
-#RUN wget https://github.com/bazelbuild/bazel/releases/download/0.19.2/bazel-0.19.2-installer-linux-x86_64.sh
-#RUN chmod +x bazel-0.19.2-installer-linux-x86_64.sh
-#RUN ./bazel-0.19.2-installer-linux-x86_64.sh
+RUN pip install -U pip six numpy wheel setuptools mock 'future>=0.17.1' enum34
+RUN pip install -U keras_applications==1.0.6 --no-deps
+RUN pip install -U keras_preprocessing==1.0.5 --no-deps
+RUN apt install unzip zip
+RUN apt-get install -y openjdk-8-jdk
+RUN wget https://github.com/bazelbuild/bazel/releases/download/0.19.2/bazel-0.19.2-installer-linux-x86_64.sh
+RUN chmod +x bazel-0.19.2-installer-linux-x86_64.sh
+RUN ./bazel-0.19.2-installer-linux-x86_64.sh
 
 # Insatll TF
-#RUN git clone https://github.com/rivendile/tensorflow.git && cd tensorflow && git checkout r1.13
+RUN git clone https://github.com/rivendile/tensorflow.git && cd tensorflow && git checkout r1.13
 #RUN cd tensorflow && ./configure
 #RUN cd tensorflow && bazel build --config=opt --config=cuda //tensorflow/tools/pip_package:build_pip_package
+#RUN cd tensorflow && bazel build --config=opt --config=mkl //tensorflow/tools/pip_package:build_pip_package
 #RUN cd tensorflow && ./bazel-bin/tensorflow/tools/pip_package/build_pip_package ./
 #RUN pip install tensorflow/tensorflow-1.13.2-cp27-cp27mu-linux_x86_64.whl
 
 # Install ByteScheduler for tensorflow
-#RUN pip install bayesian-optimization==1.0.1 six
+RUN pip install bayesian-optimization==1.0.1 six
 #RUN cd /usr/local/cuda/lib64 && ln -s stubs/libcuda.so libcuda.so.1
-#RUN git clone --branch bytescheduler --recursive https://github.com/Rivendile/byteps.git
+RUN git clone --branch bytescheduler --recursive https://github.com/Rivendile/byteps.git
 #RUN cd byteps/bytescheduler && python setup.py install
 #RUN rm -f /usr/local/cuda/lib64/libcuda.so.1
-#RUN pip install numpy six scipy -t /usr/local/lib/python2.7/dist-packages/
+RUN pip install numpy six scipy -t /usr/local/lib/python2.7/dist-packages/
 #RUN cd /usr/local/cuda/lib64
 #RUN git clone --branch bytescheduler --recursive https://github.com/Rivendile/byteps.git
 #RUN cd /usr/local/cuda/lib64/byteps/bytescheduler/bytescheduler/tensorflow
 #RUN make
+
+# Get tensorflow benchmark
+RUN git clone --branch cnn_tf_v1.13_compatible --recursive https://github.com/Rivendile/benchmarks.git
 
 # Set default shell to /bin/bash
 SHELL ["/bin/bash", "-cu"]
