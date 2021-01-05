@@ -3,11 +3,13 @@ FROM nvidia/cuda:10.0-devel-ubuntu18.04
 ARG https_proxy
 ARG http_proxy
 
-ARG BYTEPS_BASE_PATH=/usr/local
+ARG BYTEPS_BASE_PATH=/home/cluster
 ARG BYTEPS_PATH=$BYTEPS_BASE_PATH/byteps
-ARG BYTEPS_GIT_LINK=https://github.com/bytedance/byteps
+ARG BYTEPS_GIT_LINK=https://github.com/Rivendile/byteps
 ARG BYTEPS_BRANCH=master
 
+WORKDIR /home/cluster
+    
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 RUN apt-get install -y --allow-downgrades --allow-change-held-packages --no-install-recommends \
@@ -33,6 +35,30 @@ RUN apt-get install -y --allow-downgrades --allow-change-held-packages --no-inst
         python3-setuptools \
         libnccl2=2.4.7-1+cuda10.0 \
         libnccl-dev=2.4.7-1+cuda10.0
+        
+# install general dependencies
+RUN apt-get install -y openssh-server openssh-client vim sudo
+
+# setup cluster user and SSH access to container
+ENV USER cluster
+RUN useradd -ms /bin/bash $USER && usermod -p '*' $USER && usermod -g root cluster && echo "$USER:$USER" | chpasswd && adduser cluster sudo
+ENV HOME /home/$USER
+ENV SSHDIR $HOME/.ssh
+RUN mkdir -p ${SSHDIR} \
+    && touch ${SSHDIR}/sshd_config \
+    && ssh-keygen -t rsa -f ${SSHDIR}/ssh_host_rsa_key -N '' \
+    && cp ${SSHDIR}/ssh_host_rsa_key.pub ${SSHDIR}/authorized_keys \
+    && cp ${SSHDIR}/ssh_host_rsa_key ${SSHDIR}/id_rsa \
+    && echo "    IdentityFile ${SSHDIR}/id_rsa" >> ${SSHDIR}/config \
+    && echo "    StrictHostKeyChecking no" >> ${SSHDIR}/config \
+    && echo "    UserKnownHostsFile /dev/null" >> ${SSHDIR}/config \
+    && echo "    Port 2022" >> ${SSHDIR}/config \
+    && echo 'Port 2022' >> ${SSHDIR}/sshd_config \
+    && echo "HostKey ${SSHDIR}/ssh_host_rsa_key" >> ${SSHDIR}/sshd_config \
+    && echo "PidFile ${SSHDIR}/sshd.pid" >> ${SSHDIR}/sshd_config \
+    && echo "PasswordAuthentication no" >> ${SSHDIR}/sshd_config \
+    && chmod -R 600 ${SSHDIR}/* \
+    && chown -R ${USER}:${USER} ${SSHDIR}/
 
 # install framework
 # note: for tf <= 1.14, you need gcc-4.9
@@ -55,3 +81,13 @@ RUN cd $BYTEPS_BASE_PATH &&\
     git clone --recursive -b $BYTEPS_BRANCH $BYTEPS_GIT_LINK &&\
     cd $BYTEPS_PATH &&\
     python3 setup.py install
+
+# Set default shell to /bin/bash
+SHELL ["/bin/bash", "-cu"]
+
+EXPOSE 2022
+
+COPY container_entrypoint.sh /etc/
+
+RUN chmod +x /etc/container_entrypoint.sh
+ENTRYPOINT /etc/container_entrypoint.sh
