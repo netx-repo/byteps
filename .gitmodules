@@ -2,3 +2,6 @@
 	path = 3rdparty/ps-lite
 	url = https://github.com/bytedance/ps-lite
 	branch = byteps
+[submodule "examples"]
+	path = examples
+	url = https://github.com/Rivendile/examples.git
