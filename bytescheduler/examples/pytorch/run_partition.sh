@@ -11,4 +11,4 @@ export PS_VERBOSE=1
 export BYTESCHEDULER_ROOT_IP=localhost
 export BYTESCHEDULER_ROOT_PORT=8000
 
-horovodrun -np 16 -H localhost:8,3.85.80.174:8 -p 2022 python pytorch_horovod_benchmark.py --model vgg16 --num-batches-per-iter 10 --num-iters 10 --train-dir /home/cluster/data/imagenet
+horovodrun -np 8 -H localhost:8 -p 2022 python pytorch_horovod_benchmark.py --model vgg16 --num-batches-per-iter 10 --num-iters 10 --train-dir /home/cluster/data/imagenet
