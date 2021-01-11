@@ -6,6 +6,7 @@ ENV USE_BYTESCHEDULER=1
 ENV BYTESCHEDULER_WITH_MXNET=1
 ENV BYTESCHEDULER_WITHOUT_PYTORCH=1
 ENV MXNET_ROOT=/home/cluster/incubator-mxnet
+ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
 
 WORKDIR /home/cluster
 
@@ -34,7 +35,7 @@ RUN mkdir -p ${SSHDIR} \
     && chown -R ${USER}:${USER} ${SSHDIR}/
 
 # Install gcc 4.9
-RUN mkdir -p /root/gcc/ && cd /root/gcc &&\
+RUN mkdir -p /home/cluster/gcc/ && cd /home/cluster/gcc &&\
     wget http://launchpadlibrarian.net/247707088/libmpfr4_3.1.4-1_amd64.deb &&\
     wget http://launchpadlibrarian.net/253728424/libasan1_4.9.3-13ubuntu2_amd64.deb &&\
     wget http://launchpadlibrarian.net/253728426/libgcc-4.9-dev_4.9.3-13ubuntu2_amd64.deb &&\
@@ -44,7 +45,7 @@ RUN mkdir -p /root/gcc/ && cd /root/gcc &&\
     wget http://launchpadlibrarian.net/253728432/libstdc++-4.9-dev_4.9.3-13ubuntu2_amd64.deb &&\
     wget http://launchpadlibrarian.net/253728401/g++-4.9_4.9.3-13ubuntu2_amd64.deb
 
-RUN cd /root/gcc &&\
+RUN cd /home/cluster/gcc &&\
     dpkg -i gcc-4.9-base_4.9.3-13ubuntu2_amd64.deb &&\
     dpkg -i libmpfr4_3.1.4-1_amd64.deb &&\
     dpkg -i libasan1_4.9.3-13ubuntu2_amd64.deb &&\
@@ -76,7 +77,7 @@ RUN git clone --branch bytescheduler --recursive https://github.com/Rivendile/by
     cd byteps/bytescheduler && python setup.py install
 
 # Examples
-WORKDIR /root/byteps/bytescheduler/examples/mxnet-image-classification
+WORKDIR /home/cluster/byteps/bytescheduler/examples/mxnet-image-classification
 
 # Set default shell to /bin/bash
 SHELL ["/bin/bash", "-cu"]
