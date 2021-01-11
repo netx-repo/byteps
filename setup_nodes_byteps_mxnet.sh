@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # setup SSH
+sudo apt install -y nload iperf bridge-utils
 cd ~/.ssh
 touch config
 echo "Host *" >>~/.ssh/config
