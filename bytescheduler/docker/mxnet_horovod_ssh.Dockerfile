@@ -63,6 +63,10 @@ RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 200 && \
     update-alternatives --install /usr/bin/x86_64-linux-gnu-g++ x86_64-linux-gnu-g++ /usr/bin/g++-4.9 200
 
 # May need to uninstall default MXNet and install mxnet-cu90==1.5.0
+# These commands should be used after the docker image has been built
+#RUN pip uninstall -y mxnet-cu90-gcc5
+#RUN pip install mxnet-cu90==1.5.0
+#RUN pip install -U horovod
 
 # Clone MXNet as ByteScheduler compilation requires header files
 RUN git clone --recursive --branch v1.5.x https://github.com/apache/incubator-mxnet.git
@@ -70,8 +74,10 @@ RUN cd incubator-mxnet && git reset --hard 75a9e187d00a8b7ebc71412a02ed0e3ae489d
 
 # Install ByteScheduler
 RUN pip install bayesian-optimization==1.0.1
+#RUN cd /usr/local/cuda/lib64 && ln -s stubs/libcuda.so libcuda.so.1
 RUN git clone --branch bytescheduler --recursive https://github.com/Rivendile/byteps.git && \
     cd byteps/bytescheduler && python setup.py install
+#RUN rm -f /usr/local/cuda/lib64/libcuda.so.1
 
 # Examples
 WORKDIR /home/cluster/byteps/bytescheduler/examples/mxnet-image-classification
