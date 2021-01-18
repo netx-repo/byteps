@@ -17,7 +17,7 @@ id2translate=$(cat ~/.ssh/id_rsa.pub)
 ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.30.160 "echo $id2translate >>~/.ssh/authorized_keys"
 ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.16.85 "echo $id2translate >>~/.ssh/authorized_keys"
 ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.17.1 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.26.232 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.22.68 "echo $id2translate >>~/.ssh/authorized_keys"
 ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.17.117 "echo $id2translate >>~/.ssh/authorized_keys"
 ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.25.93 "echo $id2translate >>~/.ssh/authorized_keys"
 ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.30.219 "echo $id2translate >>~/.ssh/authorized_keys"
