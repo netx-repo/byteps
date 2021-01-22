@@ -20,7 +20,7 @@ ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.2.186 "echo $id2translate >
 ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.6.51 "echo $id2translate >>~/.ssh/authorized_keys"
 ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.15.37 "echo $id2translate >>~/.ssh/authorized_keys"
 ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.11.198 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.6.151 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.1.150 "echo $id2translate >>~/.ssh/authorized_keys"
 ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.10.65 "echo $id2translate >>~/.ssh/authorized_keys"
 ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.15.34 "echo $id2translate >>~/.ssh/authorized_keys"
 #ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.36.234 "echo $id2translate >>~/.ssh/authorized_keys"
