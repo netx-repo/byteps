@@ -15,14 +15,14 @@ chmod 600 ~/byteps/bytescheduler-20201004.pem
 chmod 600 ~/byteps/bytescheduler-0105.pem
 id2translate=$(cat ~/.ssh/id_rsa.pub)
 
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.6.3 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.8.198 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.15.131 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.2.46 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.11.131 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.12.119 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.1.107 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.9.109 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.47.189 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.35.189 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.46.83 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.42.67 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.45.187 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.44.7 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.33.130 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.40.176 "echo $id2translate >>~/.ssh/authorized_keys"
 #ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.36.234 "echo $id2translate >>~/.ssh/authorized_keys"
 
 cd ~/
