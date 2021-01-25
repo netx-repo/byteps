@@ -15,14 +15,14 @@ chmod 600 ~/byteps/bytescheduler-0105.pem
 id2translate=$(cat ~/.ssh/id_rsa.pub)
 
 ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.18.55 "echo $id2translate >>~/.ssh/authorized_keys"
-#ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.40.134 "echo $id2translate >>~/.ssh/authorized_keys"
-#ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.40.211 "echo $id2translate >>~/.ssh/authorized_keys"
-#ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.40.84 "echo $id2translate >>~/.ssh/authorized_keys"
-#ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.40.0 "echo $id2translate >>~/.ssh/authorized_keys"
-#ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.46.249 "echo $id2translate >>~/.ssh/authorized_keys"
-#ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.46.170 "echo $id2translate >>~/.ssh/authorized_keys"
-#ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.43.224 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.20.148 "echo $id2translate >>~/.ssh/authorized_keys"
+#ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.40.211 "echo $id2translate >>~/.ssh/authorized_keys"
+#ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.40.84 "echo $id2translate >>~/.ssh/authorized_keys"
+#ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.40.0 "echo $id2translate >>~/.ssh/authorized_keys"
+#ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.46.249 "echo $id2translate >>~/.ssh/authorized_keys"
+#ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.46.170 "echo $id2translate >>~/.ssh/authorized_keys"
 #ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.47.10 "echo $id2translate >>~/.ssh/authorized_keys"
+#ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.43.224 "echo $id2translate >>~/.ssh/authorized_keys"
 
 cd ~/
 # setup docker and connect to container
