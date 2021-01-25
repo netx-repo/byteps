@@ -5,6 +5,7 @@ filename = 'test.txt'
 warmup = 1
 cnt = 0
 sum = 0
+cluster_size = 8
 
 with open(filename, 'r') as file:
     for line in file:
@@ -16,4 +17,4 @@ with open(filename, 'r') as file:
                     sum += float(line[i+1])
 
 print("total iters (include warmup):", cnt*10)
-print("average speed: ", sum/(cnt-warmup), " samples/sec/node.")
+print("average speed: ", sum*cluster_size/(cnt-warmup), " samples/sec/node.")
