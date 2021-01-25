@@ -18,7 +18,7 @@ ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.37.165 "echo $id2transl
 ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.40.134 "echo $id2translate >>~/.ssh/authorized_keys"
 ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.40.211 "echo $id2translate >>~/.ssh/authorized_keys"
 ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.40.84 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.43.76 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.40.0 "echo $id2translate >>~/.ssh/authorized_keys"
 ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.46.249 "echo $id2translate >>~/.ssh/authorized_keys"
 ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.46.170 "echo $id2translate >>~/.ssh/authorized_keys"
 ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.43.224 "echo $id2translate >>~/.ssh/authorized_keys"
