@@ -10,7 +10,7 @@ echo "    StrictHostKeyChecking no" >>~/.ssh/config
 ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
 chmod 600 ~/.ssh/config
-chmod 600 ~/byteps/bytescheduler/bytescheduler-20201004.pem
+#chmod 600 ~/byteps/bytescheduler/bytescheduler-20201004.pem
 chmod 600 ~/byteps/bytescheduler/bytescheduler-0105.pem
 id2translate=$(cat ~/.ssh/id_rsa.pub)
 ssh -i ~/byteps/bytescheduler/bytescheduler-0105.pem ubuntu@54.205.195.230 "echo $id2translate >>~/.ssh/authorized_keys"
