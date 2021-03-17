@@ -11,7 +11,7 @@ Testing scripts to repoduce the result in out paper.
 
 ## Environment requirement
 We have used EC2 Image: Deep Learning Base AMI (Ubuntu 18.04) Version 32.0 ami-0404ddec9491a5a31 with CUDA 10.0  
-Belows are prebuilt docker images with BytePS/Bytescheduler and MxNet/Pytorch/TensorFlow(TF environment is being built...).  
+Belows are prebuilt docker images with BytePS/Bytescheduler and MxNet/Pytorch/TensorFlow(TF environment needs to add some operators...).  
   rivendile/byteps-mxnet  
   rivendile/byteps-pytorch  
   rivendile/bsc-mxnet-ps-ssh  
