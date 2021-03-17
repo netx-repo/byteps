@@ -35,6 +35,13 @@ BytePS PyTorch VGG16 and ResNet50:
 BytePs PyTorch GPT-2:  
   pytorch_gpt2.sh  
 
+PS TensorFlow VGG16:  
+
+All-Reduce MxNet/PyTorch/TensorFlow VGG16:  
+
+All-Reduce PyTorch VGG16/ResNet50/GPT2:  
+
+
 
 
 ## Contact
