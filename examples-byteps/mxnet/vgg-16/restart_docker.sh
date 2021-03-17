@@ -1,0 +1,10 @@
+#!/bin/bash
+#ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.29.228 "echo $id2translate >>~/.ssh/authorized_keys"
+#ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.36.234 "docker_container_id=$(docker ps -aqf "name=mlnet-analysis-byteps-mxnet");docker stop $docker_container_id;docker start $docker_container_id"
+ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.42.122 "docker_container_id=$(docker ps -aqf "name=mlnet-analysis-byteps-mxnet");docker stop $docker_container_id;docker start $docker_container_id"
+ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.42.220 "docker_container_id=$(docker ps -aqf "name=mlnet-analysis-byteps-mxnet");docker stop $docker_container_id;docker start $docker_container_id"
+ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.36.140 "docker_container_id=$(docker ps -aqf "name=mlnet-analysis-byteps-mxnet");docker stop $docker_container_id;docker start $docker_container_id"
+ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.34.133 "docker_container_id=$(docker ps -aqf "name=mlnet-analysis-byteps-mxnet");docker stop $docker_container_id;docker start $docker_container_id"
+ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.46.81 "docker_container_id=$(docker ps -aqf "name=mlnet-analysis-byteps-mxnet");docker stop $docker_container_id;docker start $docker_container_id"
+ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.38.217 "docker_container_id=$(docker ps -aqf "name=mlnet-analysis-byteps-mxnet");docker stop $docker_container_id;docker start $docker_container_id"
+ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.39.216 "docker_container_id=$(docker ps -aqf "name=mlnet-analysis-byteps-mxnet");docker stop $docker_container_id;docker start $docker_container_id"
