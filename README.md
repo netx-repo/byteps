@@ -7,7 +7,7 @@ As for PS and all-reduce, please use the code in branch bytescheduler. Please re
 As for BytePS, please use the code in branch master. Please refer to xxx for detailed usage.  
 
 ## Content
-Testing scripts to repoduce the result in out paper.
+Testing scripts to repoduce the results in out paper.
 
 ## Environment requirement
 We have used EC2 Image: Deep Learning Base AMI (Ubuntu 18.04) Version 32.0 ami-0404ddec9491a5a31 with CUDA 10.0  
