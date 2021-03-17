@@ -23,6 +23,8 @@ You can edit the enviorment varible to modify your experiment content. We have p
 
 PS MxNet VGG16 or ResNet50:  
   https://github.com/Rivendile/byteps/blob/bytescheduler/bytescheduler/examples/mxnet-image-classification/run_dist.sh  
+PS MxNet Bert:  
+  (Working...)  
 BytePS MxNet VGG16 and ResNet50:  
   https://github.com/Rivendile/examples/blob/4a742028407627b0e66d51ca8e57d2bf63bf59fd/mxnet/vgg-16/run_dist.sh  
 BytePS MxNet Bert:  
