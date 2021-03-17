@@ -27,7 +27,7 @@ You can edit the enviorment varible to modify your experiment content. We have p
 * [BytePS MxNet Bert](https://github.com/netx-repo/byteps/blob/master/examples-byteps/mxnet/bert-large/run_dist.sh)  
   
 * [BytePS PyTorch VGG16 and ResNet50](https://github.com/netx-repo/byteps/blob/master/examples-byteps/pytorch/run_dist.sh)  
-* [BytePs PyTorch GPT-2](https://github.com/netx-repo/byteps/blob/master/examples-byteps/pytorch/gpt-2/pytorch_gpt2.sh)  
+* [BytePS PyTorch GPT-2](https://github.com/netx-repo/byteps/blob/master/examples-byteps/pytorch/gpt-2/pytorch_gpt2.sh)  
 
 * PS TensorFlow VGG16  
 
