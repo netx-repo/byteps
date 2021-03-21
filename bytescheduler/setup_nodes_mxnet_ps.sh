@@ -33,11 +33,12 @@ ssh -i ~/byteps/bytescheduler/bytescheduler-0105.pem ubuntu@3.236.139.255 "echo 
 cd ~/
 # setup docker and connect to container
 # mxnet ps ssh t4 myps
-docker login -u rivendile -p zhyh19980824
-#docker login -u zycccc -p 314159dos
-docker pull rivendile/bsc-mxnet-ps-ssh
-#docker pull zycccc/bsc-mxnet-py3
-nvidia-docker run -it --gpus all --ipc=host --name mlnet-analysis --network host -v /home/ubuntu/byteps:/home/cluster/byteps --detach rivendile/bsc-mxnet-ps-ssh
+#docker login -u rivendile -p zhyh19980824
+docker login -u zycccc -p 314159dos
+#docker pull rivendile/bsc-mxnet-ps-ssh
+docker pull zycccc/bsc-mxnet-py3
+#nvidia-docker run -it --gpus all --ipc=host --name mlnet-analysis --network host -v /home/ubuntu/byteps:/home/cluster/byteps --detach rivendile/bsc-mxnet-ps-ssh
+nvidia-docker run -it --gpus all --ipc=host --name mlnet-analysis --network host -v /home/ubuntu/byteps:/home/cluster/byteps --detach zycccc/bsc-mxnet-py3
 docker_container_id=$(docker ps -aqf "name=mlnet-analysis")
 docker cp $docker_container_id:/home/cluster/.ssh ~/mlnet_analysis_ssh
 ssh -i ~/mlnet_analysis_ssh/id_rsa -p 2022 cluster@localhost
