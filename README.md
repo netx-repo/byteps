@@ -15,14 +15,15 @@ Belows are prebuilt docker images with BytePS/Bytescheduler and MxNet/Pytorch/Te
 * rivendile/byteps-mxnet  
 * rivendile/byteps-pytorch  
 * rivendile/bsc-mxnet-ps-ssh  
+* zycccc/bsc-mxnet-py3  
   (Docker images needs to be exposed)
 
 ## How to reproduce the results
 Make sure that each machine can be connected from any other machines.
 You can edit the enviorment varible to modify your experiment content. We have provided our sample settings in each script file.
 
-* [PS MxNet VGG16 or ResNet50](https://github.com/netx-repo/byteps/blob/bytescheduler/bytescheduler/examples/mxnet-image-classification/run_dist.sh)  
-* PS MxNet Bert  (Working...)  
+* [PS MxNet VGG16 and ResNet50](https://github.com/netx-repo/byteps/blob/bytescheduler/bytescheduler/examples/mxnet-image-classification/run_dist.sh)  
+* [PS MxNet Bert](https://github.com/ZYCCC927/examples/blob/master/mxnet/bert-large/run_bert.sh)  
 * [BytePS MxNet VGG16 and ResNet50](https://github.com/netx-repo/byteps/blob/master/examples-byteps/mxnet/vgg-16/run_dist.sh)  
 * [BytePS MxNet Bert](https://github.com/netx-repo/byteps/blob/master/examples-byteps/mxnet/bert-large/run_dist.sh)  
   
