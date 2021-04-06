@@ -12,10 +12,12 @@ Testing scripts to repoduce the results in out paper.
 ## Environment requirement
 We have used EC2 Image: Deep Learning Base AMI (Ubuntu 18.04) Version 32.0 ami-0404ddec9491a5a31 with CUDA 10.0  
 Belows are prebuilt docker images with BytePS/Bytescheduler and MxNet/Pytorch/TensorFlow(TF environment needs to add some operators...).  
-* rivendile/byteps-mxnet  
-* rivendile/byteps-pytorch  
-* rivendile/bsc-mxnet-ps-ssh  
-* zycccc/bsc-mxnet-py3  
+* [BytePS MxNet Bert](https://github.com/netx-repo/byteps/blob/master/examples-byteps/mxnet/bert-large/run_dist.sh)  
+* [BytePS PyTorch](https://github.com/netx-repo/byteps/blob/master/examples-byteps/pytorch/gpt-2/pytorch_gpt2.sh)  
+* [PS MxNet Bert](https://github.com/ZYCCC927/examples/blob/master/mxnet/bert-large/run_bert.sh)  
+* [PS MxNet Python3 version (for Bert)](https://github.com/ZYCCC927/examples/blob/master/mxnet/bert-large/run_bert.sh)  
+* [All-Reduce MxNet](https://github.com/ZYCCC927/examples/blob/master/mxnet/bert-large/run_bert.sh)  
+* [All-Reduce PyTorch](https://github.com/ZYCCC927/examples/blob/master/mxnet/bert-large/run_bert.sh)  
   (Docker images needs to be exposed)
 
 ## How to reproduce the results
@@ -30,11 +32,15 @@ You can edit the enviorment varible to modify your experiment content. We have p
 * [BytePS PyTorch VGG16 and ResNet50](https://github.com/netx-repo/byteps/blob/master/examples-byteps/pytorch/run_dist.sh)  
 * [BytePS PyTorch GPT-2](https://github.com/netx-repo/byteps/blob/master/examples-byteps/pytorch/gpt-2/pytorch_gpt2.sh)  
 
+
+* [All-Reduce MxNet VGG16](https://github.com/ZYCCC927/examples/blob/master/mxnet/bert-large/run_bert.sh)  
+* [All-Reduce PyTorch VGG16/ResNet50](https://github.com/ZYCCC927/examples/blob/master/mxnet/bert-large/run_bert.sh)  
+
 * PS TensorFlow VGG16  
 
-* All-Reduce MxNet/PyTorch/TensorFlow VGG16  
+* All-Reduce TensorFlow VGG16  
 
-* All-Reduce PyTorch VGG16/ResNet50/GPT2  
+* All-Reduce PyTorch GPT2  
 
 
 
