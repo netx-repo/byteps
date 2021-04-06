@@ -44,7 +44,7 @@ else:
 
 from transformers import (
     WEIGHTS_NAME,
-    AdamW,
+    SGD,
     BertConfig,
     BertForMaskedLM,
     BertTokenizer,
@@ -260,7 +260,7 @@ def train(args, train_dataset, model: PreTrainedModel, tokenizer: PreTrainedToke
         },
         {"params": [p for n, p in model.named_parameters() if any(nd in n for nd in no_decay)], "weight_decay": 0.0},
     ]
-    optimizer = AdamW(optimizer_grouped_parameters, lr=args.learning_rate, eps=args.adam_epsilon)
+    optimizer = SGD(optimizer_grouped_parameters, lr=args.learning_rate, momentum=0.9)
     
     optimizer = bps.DistributedOptimizer(optimizer, named_parameters=model.named_parameters())
     bps.broadcast_parameters(model.state_dict(), root_rank=0)
