@@ -11,13 +11,13 @@ Testing scripts to repoduce the results in out paper.
 
 ## Environment requirement
 We have used EC2 Image: Deep Learning Base AMI (Ubuntu 18.04) Version 32.0 ami-0404ddec9491a5a31 with CUDA 10.0  
-Belows are prebuilt docker images with BytePS/Bytescheduler and MxNet/Pytorch/TensorFlow(TF environment needs to add some operators...).  
-* [BytePS MxNet Bert](https://github.com/netx-repo/byteps/blob/master/examples-byteps/mxnet/bert-large/run_dist.sh)  
-* [BytePS PyTorch](https://github.com/netx-repo/byteps/blob/master/examples-byteps/pytorch/gpt-2/pytorch_gpt2.sh)  
-* [PS MxNet Bert](https://github.com/ZYCCC927/examples/blob/master/mxnet/bert-large/run_bert.sh)  
-* [PS MxNet Python3 version (for Bert)](https://github.com/ZYCCC927/examples/blob/master/mxnet/bert-large/run_bert.sh)  
-* [All-Reduce MxNet](https://github.com/ZYCCC927/examples/blob/master/mxnet/bert-large/run_bert.sh)  
-* [All-Reduce PyTorch](https://github.com/ZYCCC927/examples/blob/master/mxnet/bert-large/run_bert.sh)  
+Belows are enviroment setup scripts from docker images with BytePS/Bytescheduler and MxNet/Pytorch/TensorFlow(TF environment needs to add some operators...).  
+* [BytePS MxNet Bert](https://github.com/netx-repo/byteps/blob/master/setup_nodes_byteps_mxnet.sh)  
+* [BytePS PyTorch](https://github.com/netx-repo/byteps/blob/master/setup_nodes_byteps_pytorch.sh)  
+* [PS MxNet](https://github.com/netx-repo/byteps/blob/bytescheduler/bytescheduler/setup_nodes_mxnet_ps.sh)  
+* [PS MxNet Python3 version (For Bert)](https://github.com/netx-repo/byteps/blob/bytescheduler/bytescheduler/setup_nodes_mxnet_ps.sh)  
+* [All-Reduce MxNet](https://github.com/netx-repo/byteps/blob/bytescheduler/bytescheduler/setup_nodes_mxnet_allreduce.sh)  
+* [All-Reduce PyTorch](https://github.com/netx-repo/byteps/blob/bytescheduler/bytescheduler/setup_nodes_pytorch_allreduce.sh)  
   (Docker images needs to be exposed)
 
 ## How to reproduce the results
@@ -33,8 +33,8 @@ You can edit the enviorment varible to modify your experiment content. We have p
 * [BytePS PyTorch GPT-2](https://github.com/netx-repo/byteps/blob/master/examples-byteps/pytorch/gpt-2/pytorch_gpt2.sh)  
 
 
-* [All-Reduce MxNet VGG16](https://github.com/ZYCCC927/examples/blob/master/mxnet/bert-large/run_bert.sh)  
-* [All-Reduce PyTorch VGG16/ResNet50](https://github.com/ZYCCC927/examples/blob/master/mxnet/bert-large/run_bert.sh)  
+* [All-Reduce MxNet VGG16](https://github.com/netx-repo/byteps/blob/bytescheduler/bytescheduler/examples/mxnet-image-classification/run_baseline_dist.sh)  
+* [All-Reduce PyTorch VGG16/ResNet50](https://github.com/netx-repo/byteps/blob/bytescheduler/bytescheduler/examples/pytorch/run_baseline_dist.sh)  
 
 * PS TensorFlow VGG16  
 
