@@ -42,6 +42,7 @@ You can edit the enviorment varible to modify your experiment content. We have p
 
 * All-Reduce PyTorch GPT2  
 
+For All-Reduce, default cycle-time 5ms is too long, resulting in long pauses between all-reduce calls,  1-2ms might be more suitable (specific value is determined by your machines). Similarly, the fusion buffer threshold of 64MB is often too small for models such as ResNet50 with fp32 gradients, change it to 128MB can significantly improve the throughput.
 
 
 
