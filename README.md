@@ -30,19 +30,15 @@ You can edit the enviorment varible to modify your experiment content. We have p
 * [BytePS MxNet Bert](https://github.com/netx-repo/byteps/blob/master/examples-byteps/mxnet/bert-large/run_dist.sh)  
   
 * [BytePS PyTorch VGG16 and ResNet50](https://github.com/netx-repo/byteps/blob/master/examples-byteps/pytorch/run_dist.sh)  
-* [BytePS PyTorch GPT-2](https://github.com/netx-repo/byteps/blob/master/examples-byteps/pytorch/gpt-2/pytorch_gpt2.sh)  
+* [BytePS PyTorch Bert]
 
+* [BytePS TensorFlow VGG16](https://github.com/Rivendile/examples/blob/4a742028407627b0e66d51ca8e57d2bf63bf59fd/tensorflow/resnet-50/run.sh)
 
 * [All-Reduce MxNet VGG16](https://github.com/netx-repo/byteps/blob/bytescheduler/bytescheduler/examples/mxnet-image-classification/run_baseline_dist.sh)  
-* [All-Reduce PyTorch VGG16/ResNet50](https://github.com/netx-repo/byteps/blob/bytescheduler/bytescheduler/examples/pytorch/run_baseline_dist.sh)  
 
-* PS TensorFlow VGG16  
-
-* All-Reduce TensorFlow VGG16  
-
-* All-Reduce PyTorch GPT2  
 
 For horovod 0.16.1, default cycle-time 5ms is too long, resulting in long pauses between all-reduce calls,  1-2ms might be more suitable (specific value is determined by your machines). Similarly, the fusion buffer threshold of 64MB is often too small for models such as ResNet50 with fp32 gradients, change it to 128MB can significantly improve the throughput.
+
 
 
 
