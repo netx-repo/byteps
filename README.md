@@ -12,13 +12,12 @@ Testing scripts to repoduce the results in out paper.
 ## Environment requirement
 We have used EC2 Image: Deep Learning Base AMI (Ubuntu 18.04) Version 32.0 ami-0404ddec9491a5a31 with CUDA 10.0  
 Belows are enviroment setup scripts from docker images with BytePS/Bytescheduler and MxNet/Pytorch/TensorFlow(TF environment needs to add some operators...).  
-* [BytePS MxNet Bert](https://github.com/netx-repo/byteps/blob/master/setup_nodes_byteps_mxnet.sh)  
+* [BytePS MxNet](https://github.com/netx-repo/byteps/blob/master/setup_nodes_byteps_mxnet.sh)  
 * [BytePS PyTorch](https://github.com/netx-repo/byteps/blob/master/setup_nodes_byteps_pytorch.sh)  
+* [BytePS PyTorch](https://github.com/netx-repo/byteps/blob/master/setup_nodes_byteps_tf.sh)  
 * [PS MxNet](https://github.com/netx-repo/byteps/blob/bytescheduler/bytescheduler/setup_nodes_mxnet_ps.sh)  
-* [PS MxNet Python3 version (For Bert)](https://github.com/netx-repo/byteps/blob/bytescheduler/bytescheduler/setup_nodes_mxnet_ps.sh)  
 * [All-Reduce MxNet](https://github.com/netx-repo/byteps/blob/bytescheduler/bytescheduler/setup_nodes_mxnet_allreduce.sh)  
-* [All-Reduce PyTorch](https://github.com/netx-repo/byteps/blob/bytescheduler/bytescheduler/setup_nodes_pytorch_allreduce.sh)  
-  (Docker images needs to be exposed)
+  (Docker images have been exposed in zycccc)
 
 ## How to reproduce the results
 Make sure that each machine can be connected from any other machines.
