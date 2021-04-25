@@ -10,18 +10,17 @@ echo "    StrictHostKeyChecking no" >>~/.ssh/config
 ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
 chmod 600 ~/.ssh/config
-chmod 600 ~/byteps/bytescheduler-20201004.pem
 chmod 600 ~/byteps/bytescheduler-0105.pem
 id2translate=$(cat ~/.ssh/id_rsa.pub)
 
 ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.35.96 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.33.165 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.42.51 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.39.70 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.37.77 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.45.143 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.43.38 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.36.215 "echo $id2translate >>~/.ssh/authorized_keys"
+#ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.33.165 "echo $id2translate >>~/.ssh/authorized_keys"
+#ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.42.51 "echo $id2translate >>~/.ssh/authorized_keys"
+#ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.39.70 "echo $id2translate >>~/.ssh/authorized_keys"
+#ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.37.77 "echo $id2translate >>~/.ssh/authorized_keys"
+#ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.45.143 "echo $id2translate >>~/.ssh/authorized_keys"
+#ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.43.38 "echo $id2translate >>~/.ssh/authorized_keys"
+#ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.36.215 "echo $id2translate >>~/.ssh/authorized_keys"
 #ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.43.224 "echo $id2translate >>~/.ssh/authorized_keys"
 
 cd ~/
