@@ -17,7 +17,7 @@ Belows are enviroment setup scripts from docker images with BytePS/Bytescheduler
 * [BytePS TensorFlow](https://github.com/netx-repo/byteps/blob/master/setup_nodes_byteps_tf.sh)  
 * [PS MxNet](https://github.com/netx-repo/byteps/blob/bytescheduler/bytescheduler/setup_nodes_mxnet_ps.sh)  
 * [All-Reduce MxNet](https://github.com/netx-repo/byteps/blob/bytescheduler/bytescheduler/setup_nodes_mxnet_allreduce.sh)  
-  (Docker images have been exposed in zycccc)
+  (Docker images have been exposed in [zycccc](https://hub.docker.com/u/zycccc))
 
 ## How to reproduce the results
 Make sure that each machine can be connected from any other machines.
