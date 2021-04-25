@@ -11,11 +11,10 @@ echo "    StrictHostKeyChecking no" >>~/.ssh/config
 ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
 chmod 600 ~/.ssh/config
-chmod 600 ~/byteps/bytescheduler-20201004.pem
 chmod 600 ~/byteps/bytescheduler-0105.pem
 id2translate=$(cat ~/.ssh/id_rsa.pub)
 
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.18.55 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.85.99 "echo $id2translate >>~/.ssh/authorized_keys"
 #ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.33.207 "echo $id2translate >>~/.ssh/authorized_keys"
 #ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.34.181 "echo $id2translate >>~/.ssh/authorized_keys"
 #ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.38.43 "echo $id2translate >>~/.ssh/authorized_keys"
@@ -28,7 +27,6 @@ ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.18.55 "echo $id2translate >
 cd ~/
 # setup docker and connect to container
 # mxnet ps ssh t4 myps
-docker login -u rivendile -p zhyh19980824
 docker pull rivendile/byteps-mxnet
 nvidia-docker run -it --gpus all --ipc=host --shm-size=32768m --name mlnet-analysis-byteps-mxnet --network host -v /home/ubuntu/byteps:/home/cluster/byteps --detach 3fe34daac76b
 docker_container_id=$(docker ps -aqf "name=mlnet-analysis-byteps-mxnet")
