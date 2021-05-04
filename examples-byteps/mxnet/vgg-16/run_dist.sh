@@ -16,7 +16,7 @@ export byteps_partition_bytes=480000000
 
 export dmlc_ps_root_uri=172.31.38.29
 export byteps_trace_on=1
-export byteps_trace_dir=/home/cluster/trace
+export byteps_trace_dir=/home/cluster/byteps/examples-byteps/mxnet/vgg-16/trace
 export COMMAND='python3 /home/cluster/byteps/examples-byteps/mxnet/vgg-16/train_imagenet.py --network vgg --num-layers 16 --batch-size 32 --benchmark 1 --num-examples 3552 --num-epochs 1 --disp-batches 10'
 
 # scheduler
