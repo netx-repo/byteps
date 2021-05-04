@@ -2,6 +2,9 @@ export dmlc_num_server=8
 export dmlc_num_worker=8
 export dmlc_ps_root_uri='172.31.79.94'
 
+export BYTESCHEDULER_DEBUG=1
+export BYTESCHEDULER_TIMELINE=/home/cluster/byteps/bytescheduler/examples/mxnet-image-classification/timeline.json
+
 # baseline
 export use_bytescheduler=0
 export bytescheduler_queue_type=0
