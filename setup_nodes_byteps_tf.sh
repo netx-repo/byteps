@@ -22,7 +22,6 @@ ssh -i ~/byteps/bytescheduler-20201004.pem ubuntu@172.31.64.215 "echo $id2transl
 
 cd ~/
 # setup docker and connect to container
-# mxnet ps ssh t4 myps
 docker pull zycccc/byteps-tf
 nvidia-docker run -it --gpus all --ipc=host --name mlnet-analysis-byteps-tf --network host -v /home/ubuntu/byteps:/home/cluster/byteps --detach zycccc/byteps-tf
 docker_container_id=$(docker ps -aqf "name=mlnet-analysis-byteps-tf")
