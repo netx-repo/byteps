@@ -1,9 +1,4 @@
 #!/bin/bash
-git clone https://github.com/Rivendile/byteps.git
-cd byteps
-git config  credential.helper store
-git submodule init
-git submodule update
 
 # setup SSH
 cd ~/.ssh
