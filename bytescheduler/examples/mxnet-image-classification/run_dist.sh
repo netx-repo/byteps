@@ -13,6 +13,15 @@ export bytescheduler_credit=160000000
 export bytescheduler_credit_tuning=0
 export bytescheduler_partition_tuning=0
 
+# baselin+
+#export use_bytescheduler=1
+#export bytescheduler_queue_type=1
+#export bytescheduler_partition=480000000
+#export bytescheduler_credit=480000000
+#export bytescheduler_credit_tuning=0
+#export bytescheduler_partition_tuning=0
+
+
 # schedule
 #export use_bytescheduler=1
 #export bytescheduler_queue_type=0
