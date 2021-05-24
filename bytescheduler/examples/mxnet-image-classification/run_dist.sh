@@ -5,15 +5,10 @@ export dmlc_ps_root_uri='172.31.40.76'
 #BYTESCHEDULER_DEBUG=1
 #BYTESCHEDULER_TIMELINE=/home/cluster/byteps/bytescheduler/examples/mxnet-image-classification/timeline.json
 
-# baseline
+# baseline without bytescheduler
 export use_bytescheduler=0
-export bytescheduler_queue_type=0
-export bytescheduler_partition=8000000
-export bytescheduler_credit=160000000
-export bytescheduler_credit_tuning=0
-export bytescheduler_partition_tuning=0
 
-# baselin+
+# baseline
 #export use_bytescheduler=1
 #export bytescheduler_queue_type=1
 #export bytescheduler_partition=480000000
