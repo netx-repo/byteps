@@ -42,7 +42,7 @@ export use_bytescheduler=0
 #export bytescheduler_partition_tuning=0
 
 
-export COMMAND='python train_imagenet.py --network vgg --num-layers 16 --kv-store dist_sync_device --batch-size 32 --disp-batches 10 --num-epochs 1 --gpus 0 --benchmark 1 --num-examples 10496'
+export COMMAND='python train_imagenet.py --network vgg --num-layers 16 --kv-store dist_sync_device --batch-size 32 --disp-batches 10 --num-epochs 1 --gpus 0,1,2,3,4,5,6,7 --benchmark 1 --num-examples 10496'
 #--data-train /home/cluster/data/data_train.rec --data-train-idx /home/cluster/data/data_train.idx --data-val /home/cluster/data/data_val.rec --data-val-idx /home/cluster/data/data_val.idx --data-nthreads 8
 
 # scheduler
