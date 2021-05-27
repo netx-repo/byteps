@@ -12,14 +12,14 @@ chmod 600 ~/.ssh/id_rsa
 chmod 600 ~/.ssh/config
 chmod 600 ~/byteps/bytescheduler/bytescheduler-0105.pem
 id2translate=$(cat ~/.ssh/id_rsa.pub)
-ssh -i ~/byteps/bytescheduler/bytescheduler-0105.pem ubuntu@172.31.11.111 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler/bytescheduler-0105.pem ubuntu@172.31.14.62 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler/bytescheduler-0105.pem ubuntu@172.31.10.196 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler/bytescheduler-0105.pem ubuntu@172.31.1.176 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler/bytescheduler-0105.pem ubuntu@172.31.4.188 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler/bytescheduler-0105.pem ubuntu@172.31.11.215 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler/bytescheduler-0105.pem ubuntu@172.31.11.32 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler/bytescheduler-0105.pem ubuntu@172.31.6.32 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler/bytescheduler-0105.pem ubuntu@172.31.37.112 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler/bytescheduler-0105.pem ubuntu@172.31.46.132 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler/bytescheduler-0105.pem ubuntu@172.31.40.220 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler/bytescheduler-0105.pem ubuntu@172.31.45.93 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler/bytescheduler-0105.pem ubuntu@172.31.39.150 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler/bytescheduler-0105.pem ubuntu@172.31.45.199 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler/bytescheduler-0105.pem ubuntu@172.31.36.125 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/bytescheduler/bytescheduler-0105.pem ubuntu@172.31.45.175 "echo $id2translate >>~/.ssh/authorized_keys"
 
 cd ~/
 # setup docker and connect to container
