@@ -62,7 +62,7 @@ RUN mkdir -p ${SSHDIR} \
 
 # install framework
 # note: for tf <= 1.14, you need gcc-4.9
-ARG FRAMEWORK=tensorflow
+ARG FRAMEWORK=mxnet
 RUN if [ "$FRAMEWORK" = "tensorflow" ]; then \
         pip3 install --upgrade pip; \
         pip3 install -U tensorflow-gpu==1.15.0; \
@@ -76,6 +76,8 @@ RUN if [ "$FRAMEWORK" = "tensorflow" ]; then \
     fi
 
 ENV LD_LIBRARY_PATH /usr/local/cuda/lib64/stubs:$LD_LIBRARY_PATH
+
+ENV BYTEPS_WITH_UCX 1
 
 RUN cd $BYTEPS_BASE_PATH &&\
     git clone --recursive -b $BYTEPS_BRANCH $BYTEPS_GIT_LINK &&\
