@@ -5,7 +5,7 @@ ARG http_proxy
 
 ARG BYTEPS_BASE_PATH=/home/cluster
 ARG BYTEPS_PATH=$BYTEPS_BASE_PATH/byteps
-ARG BYTEPS_GIT_LINK=https://github.com/Rivendile/byteps
+ARG BYTEPS_GIT_LINK=https://github.com/netx-repo/byteps.git
 ARG BYTEPS_BRANCH=master
 
 WORKDIR /home/cluster
