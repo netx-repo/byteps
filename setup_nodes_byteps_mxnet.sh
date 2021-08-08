@@ -14,8 +14,8 @@ chmod 600 ~/.ssh/config
 chmod 600 ~/byteps/mlnet.pem
 id2translate=$(cat ~/.ssh/id_rsa.pub)
 
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.6.229 "echo $id2translate >>~/.ssh/authorized_keys"
-ssh -i ~/byteps/bytescheduler-0105.pem ubuntu@172.31.9.183 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/mlnet.pem ubuntu@172.31.71.90 "echo $id2translate >>~/.ssh/authorized_keys"
+ssh -i ~/byteps/mlnet.pem ubuntu@172.31.75.40 "echo $id2translate >>~/.ssh/authorized_keys"
 
 cd ~/
 # setup docker and connect to container
